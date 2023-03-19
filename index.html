@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      const copyStyles = {
+        fontFamily: "sans-serif",
+        fontSizes: ["1.5rem", "2rem", "3rem", "4rem"],
+        lineHeight: "1.5",
+        titleColors: ["#ddd6fe", "#c4b5fd", "#a78bfa"],
+        widths: ["65ch", "auto"]
+      }
+
+      const app = document.getElementById("app")
+
+      function title(words) {
+        const title = document.createElement("h1")
+        title.innerHTML = words
+        title.style.color = copyStyles.titleColors.slice(2, 3)
+        title.style.fontFamily = copyStyles.fontFamily
+        title.style.fontSize = copyStyles.fontSizes.slice(3, 4)
+
+        return title
+      }
+
+      function subTitle(words) {
+        const subTitle = document.createElement("h2")
+        subTitle.innerHTML = words
+        subTitle.style.fontFamily = copyStyles.fontFamily
+        subTitle.style.fontSize = copyStyles.fontSizes.slice(1, 2)
+        subTitle.style.color = copyStyles.titleColors.slice(1, 2)
+        subTitle.style.marginLeft = copyStyles.widths.slice(1, 2)
+        subTitle.style.marginRight = copyStyles.widths.slice(1, 2)
+
+        return subTitle
+      }
+
+      function text(words) {
+        const text = document.createElement("p")
+        text.innerHTML = words
+        text.style.fontSize = copyStyles.fontSizes.slice(0, 1)
+        text.style.lineHeight = copyStyles.lineHeight
+        text.style.maxWidth = copyStyles.widths.slice(0, 1)
+        text.style.marginLeft = copyStyles.widths.slice(1, 2)
+        text.style.marginRight = copyStyles.widths.slice(1, 2)
+
+        return text
+      }
+
+      function container(a, b, c) {
+        const container = document.createElement("div")
+
+        app.appendChild(container)
+        container.appendChild(a)
+        container.appendChild(b)
+        container.appendChild(c)
+        container.style.maxWidth = copyStyles.widths.slice(0, 1)
+        container.style.marginLeft = copyStyles.widths.slice(1, 2)
+        container.style.marginRight = copyStyles.widths.slice(1, 2)
+      }
+
+      function header() {
+        const header = document.createElement("header")
+        const nav = document.createElement("nav")
+        const ul = document.createElement("ul")
+        const li = document.createElement("li")
+        header.appendChild(nav)
+        header.innerHTML = "hello"
+        nav.appendChild(ul)
+
+        app.appendChild(header)
+
+        return header
+      }
+
+      container(title("Hello, I'm Marcus Hugo"), subTitle("Frontend Web Developer"), text("This is so rediculous and fun, writing JavaScript to render Html and CSS. It is so verbose. Mostly expiremnting with functions, callback functions, arrays, objects, parameters, and variables, and scope."))
+    </script>
+  </body>
+</html>
