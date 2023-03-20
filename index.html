@@ -4,25 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title></title>
+    <script>
+      const siteTitle = "Vanilla JavaScript Website"
+      document.querySelector("title").innerHTML = siteTitle
+    </script>
   </head>
   <body>
     <div id="app"></div>
     <script>
+      // Site Styles
       const copyStyles = {
         fontFamily: "sans-serif",
         fontSizes: ["1.5rem", "2rem", "3rem", "4rem"],
         lineHeight: "1.5",
-        titleColors: ["#ddd6fe", "#c4b5fd", "#a78bfa"],
+        accentColors: { violet200: "#ddd6fe", violet300: "#c4b5fd", violet400: "#a78bfa" },
         widths: ["65ch", "auto"]
       }
 
       const app = document.getElementById("app")
 
+      // Components
       function title(words) {
         const title = document.createElement("h1")
         title.innerHTML = words
-        title.style.color = copyStyles.titleColors.slice(2, 3)
+        title.style.color = copyStyles.accentColors.violet200
         title.style.fontFamily = copyStyles.fontFamily
         title.style.fontSize = copyStyles.fontSizes.slice(3, 4)
 
@@ -34,7 +40,7 @@
         subTitle.innerHTML = words
         subTitle.style.fontFamily = copyStyles.fontFamily
         subTitle.style.fontSize = copyStyles.fontSizes.slice(1, 2)
-        subTitle.style.color = copyStyles.titleColors.slice(1, 2)
+        subTitle.style.color = copyStyles.accentColors.violet300
         subTitle.style.marginLeft = copyStyles.widths.slice(1, 2)
         subTitle.style.marginRight = copyStyles.widths.slice(1, 2)
 
@@ -69,17 +75,32 @@
         const header = document.createElement("header")
         const nav = document.createElement("nav")
         const ul = document.createElement("ul")
-        const li = document.createElement("li")
-        header.appendChild(nav)
-        header.innerHTML = "hello"
-        nav.appendChild(ul)
-
+        const links = ["Home", "About", "Contact"]
         app.appendChild(header)
+        header.appendChild(nav)
+        nav.appendChild(ul)
+        ul.style.display = "flex"
+        ul.style.listStyle = "none"
+        ul.style.gap = "1rem"
+
+        ul.innerHTML = `
+          <li>
+            <a href="#">${links[0]}</a>
+          </li>
+          <li>
+            <a href="#">${links[1]}</a>
+          </li>
+          <li>
+            <a href="#">${links[2]}</a>
+          </li>
+        `
 
         return header
       }
 
-      container(title("Hello, I'm Marcus Hugo"), subTitle("Frontend Web Developer"), text("This is so rediculous and fun, writing JavaScript to render Html and CSS. It is so verbose. Mostly expiremnting with functions, callback functions, arrays, objects, parameters, and variables, and scope."))
+      // App Content
+      header()
+      container(title(siteTitle), subTitle("Hi, I'm Marcus Hugo.  Thanks for visiting this site.  I hope you enjoy browsing through the code."), text("This is so rediculous and fun, writing JavaScript to render Html and CSS. It is so verbose! Mostly expiremnting with functions, callback functions, arrays, objects, parameters, and variables, and scope."))
     </script>
   </body>
 </html>
