@@ -68,7 +68,7 @@
         containerSingle.style.marginRight = copyStyles.widths.slice(1, 2)
       }
 
-      function container(a, b, c) {
+      function containerTriple(a, b, c) {
         const container = document.createElement("div")
 
         app.appendChild(container)
@@ -80,19 +80,24 @@
         container.style.marginRight = copyStyles.widths.slice(1, 2)
       }
 
+      function unorderedList(array) {
+        const unorderedList = array.map(item => `<li><a href="#">${item}</a></li>`).join("")
+        return unorderedList
+      }
+
       function header() {
         const header = document.createElement("header")
         const nav = document.createElement("nav")
         const ul = document.createElement("ul")
         const links = ["Home", "About", "Contact"]
-        const renderLinks = links.map(link => `<li><a href="#">${link}</a></li>`).join("")
+
         app.appendChild(header)
         header.appendChild(nav)
         nav.appendChild(ul)
         ul.style.display = "flex"
         ul.style.listStyle = "none"
         ul.style.gap = "1rem"
-        ul.innerHTML = renderLinks
+        ul.innerHTML = unorderedList(links)
 
         return header
       }
@@ -100,13 +105,13 @@
       function footer() {
         const footer = document.createElement("footer")
         const links = ["Twitter", "GitHub", "LinkedIn", "Email"]
-        const renderLinks = links.map(link => `<li><a href="#">${link}</a></li>`).join("")
+
         app.appendChild(footer)
         footer.style.padding = "1rem 0"
         footer.innerHTML = `
         <h3 style="font-family:${copyStyles.fontFamily}; display:flex; justify-content: center;">Contact Me Here</h3>
           <ul style="display:flex; justify-content:center; list-style: none; gap: 1rem;">
-           ${renderLinks}
+           ${unorderedList(links)}
           </ul>
           <p style="text-align: center; padding: 1rem 0;">2023 Marcus Hugo. Built with 💗 and vanilla JavaScript.</p>
         `
@@ -115,7 +120,7 @@
 
       // App Content
       header()
-      container(title(siteTitle), subTitle("Hi, I'm Marcus Hugo.  Thanks for visiting this site.  I hope you enjoy browsing through the code."), text("Writing JavaScript to render Html and CSS is so rediculous and fun! It is so verbose! Mostly expiremnting with functions, callback functions, arrays, objects, parameters, variables, and scope."))
+      containerTriple(title(siteTitle), subTitle("Hi, I'm Marcus Hugo.  Thanks for visiting this site.  I hope you enjoy browsing through the code."), text("Writing JavaScript to render Html and CSS is so rediculous and fun! It is so verbose! Mostly expiremnting with functions, callback functions, arrays, objects, parameters, variables, and scope."))
       containerSingle(text("I've been learning React, Next, and Astro, and I see how they abstract away alot of code and make it faster to build websites or webapps.  I think I started this to see what I could do with vanilla js."))
       footer()
       const allAnchors = document.querySelectorAll("a")
