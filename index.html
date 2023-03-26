@@ -23,6 +23,8 @@
       }
 
       const app = document.getElementById("app")
+      const favoriteWebTechnologies = ["Html", "CSS", "JavaScript"]
+      const currentlyLearning = ["React", "Next.js", "Astro", "Eleventy"]
 
       // Components
       function title(words) {
@@ -68,6 +70,18 @@
         containerSingle.style.marginRight = copyStyles.widths.slice(1, 2)
       }
 
+      function containerDouble(a, b) {
+        const container = document.createElement("div")
+
+        app.appendChild(container)
+        container.appendChild(a)
+        container.appendChild(b)
+
+        container.style.maxWidth = copyStyles.widths.slice(0, 1)
+        container.style.marginLeft = copyStyles.widths.slice(1, 2)
+        container.style.marginRight = copyStyles.widths.slice(1, 2)
+      }
+
       function containerTriple(a, b, c) {
         const container = document.createElement("div")
 
@@ -81,8 +95,15 @@
       }
 
       function unorderedList(array) {
-        const unorderedList = array.map(item => `<li><a href="#">${item}</a></li>`).join("")
-        return unorderedList
+        const ul = document.createElement("ul")
+        const listItems = array.map(item => `<li>${item}</li>`).join("")
+        ul.innerHTML = listItems
+        return ul
+      }
+
+      function createListItems(array) {
+        const listItems = array.map(item => `<li><a href="#">${item}</a></li>`).join("")
+        return listItems
       }
 
       function header() {
@@ -97,7 +118,7 @@
         ul.style.display = "flex"
         ul.style.listStyle = "none"
         ul.style.gap = "1rem"
-        ul.innerHTML = unorderedList(links)
+        ul.innerHTML = createListItems(links)
 
         return header
       }
@@ -111,7 +132,7 @@
         footer.innerHTML = `
         <h3 style="font-family:${copyStyles.fontFamily}; display:flex; justify-content: center;">Contact Me Here</h3>
           <ul style="display:flex; justify-content:center; list-style: none; gap: 1rem;">
-           ${unorderedList(links)}
+           ${createListItems(links)}
           </ul>
           <p style="text-align: center; padding: 1rem 0;">2023 Marcus Hugo. Built with 💗 and vanilla JavaScript.</p>
         `
@@ -122,6 +143,8 @@
       header()
       containerTriple(title(siteTitle), subTitle("Hi, I'm Marcus Hugo.  Thanks for visiting this site.  I hope you enjoy browsing through the code."), text("Writing JavaScript to render Html and CSS is so rediculous and fun! It is so verbose! Mostly expiremnting with functions, callback functions, arrays, objects, parameters, variables, and scope."))
       containerSingle(text("I've been learning React, Next, and Astro, and I see how they abstract away alot of code and make it faster to build websites or webapps.  I think I started this to see what I could do with vanilla js."))
+      containerDouble(subTitle("My Favorite Web Technologies"), unorderedList(favoriteWebTechnologies))
+      containerDouble(subTitle("What I'm Currently Learning"), unorderedList(currentlyLearning))
       footer()
       const allAnchors = document.querySelectorAll("a")
       allAnchors.forEach(anchor => anchor.setAttribute("style", "color: inherit"))
